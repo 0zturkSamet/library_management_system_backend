@@ -1,6 +1,6 @@
 package com.lms.library.domain;
 
-import java.io.Serializable;
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -12,14 +12,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="users")
-public class User implements Serializable {
+public class User  {
 	
 	public User(@NotNull String displayName, @NotNull String username, @NotNull String password,
 			@NotNull Integer active, @NotNull String role, @NotNull Date createdDate, Date lastModifiedDate) {
@@ -33,10 +36,9 @@ public class User implements Serializable {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
 	
 	@NotNull
@@ -63,12 +65,11 @@ public class User implements Serializable {
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	
 	@Column(name = "last_modified_date")
 	private Date lastModifiedDate;
+
 	
-	
-	
+
 	
 	
 	
