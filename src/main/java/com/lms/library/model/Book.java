@@ -1,17 +1,21 @@
 package com.lms.library.model;
 
 import java.io.Serializable;
-
 import java.util.Date;
+import java.util.Locale.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,15 +35,15 @@ public class Book implements Serializable {
 	
 	
 	
-	@NotNull(message = "*Please enter book title")
-	@NotBlank(message = "*Plese enter book title")
+	@NotNull(message = "Please enter book title")
+	@NotBlank(message = "Plese enter book title")
 	@Column(name="title")
 	
 	private String title;
 	
 	
-	@NotNull(message = "*Please enter book tag")
-	@NotBlank(message = " *Please enter book tag")
+	@NotNull(message = "Please enter book tag")
+	@NotBlank(message = " Please enter book tag")
 	@Column(name="tag")
 	private String tag;
 	
@@ -61,10 +65,13 @@ public class Book implements Serializable {
 	private Date createDate;
 	
 	
-	@Column(name = "category")
-	private String category;
 	
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@NotNull(message = "Please select category")
+	private Category category;
 	
 	
 }
